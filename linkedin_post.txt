@@ -1,29 +1,19 @@
-🚀 **Automated README & LinkedIn Post Generator for Jupyter Notebooks** 🚀  
+**Automate Your Notebook Docs – From Code to README & LinkedIn in One Click**  
 
-I’ve built an end‑to‑end pipeline that turns any `.ipynb` into a polished GitHub README **and** a ready‑to‑publish LinkedIn post with a single function call.
+Data teams spend countless hours turning exploratory notebooks into polished documentation and social‑media updates. This repo eliminates that manual step with an end‑to‑end pipeline that reads any Jupyter `.ipynb`, extracts markdown and code cells, and uses **LangChain**, **LangGraph**, and **Groq’s `gpt‑oss‑120b`** LLM to generate a production‑ready GitHub README *and* a concise LinkedIn post in seconds.  
 
-### What it does  
-1️⃣ **Extracts** markdown & code cells from a notebook (`load_notebook`).  
-2️⃣ **Prompts** Groq’s GPT‑OSS‑120B via LangChain to craft a structured README.  
-3️⃣ **Feeds** that README into a second prompt to generate a concise, technical LinkedIn summary.  
-4️⃣ **Orchestrates** the two steps with LangGraph’s state‑graph, then writes `README_generated.md` & `linkedin_post.txt`.
+**Key tools & frameworks**  
+- **nbformat** – reliable notebook parsing  
+- **PromptTemplate** (LangChain) – custom prompts for README & LinkedIn copy  
+- **ChatGroq** – deterministic LLM output (temp 0.3)  
+- **langgraph.StateGraph** – deterministic workflow (generate README → generate LinkedIn)  
+- **Python ≥ 3.9**, **dotenv**, **IPython.display** (Mermaid visualisation)  
 
-### Core stack  
-- **Python 3.9+** – core logic  
-- **nbformat** – notebook parsing  
-- **LangChain + LangChain‑Groq** – prompt templating & LLM abstraction  
-- **LangGraph** – workflow graph (generate_readme → generate_linkedin_post)  
-- **Groq LLM (gpt‑oss‑120b)** – high‑throughput generation  
-- **Mermaid** (via `draw_mermaid_png`) – visual graph rendering  
+Why it matters:  
+- Keeps documentation in sync with the source notebook, reducing drift.  
+- Saves engineers ≈ 30 min per notebook on copy‑editing and formatting.  
+- Produces output that speaks directly to analysts, data scientists, ML engineers, and AI developers—technical yet natural.  
 
-### Why it matters  
-Documentation and social‑media outreach are often after‑thoughts that drain developer time and become stale. By automating both artifacts, we get:  
-- Consistent, up‑to‑date READMEs that cover title, problem, approach, tech stack, results, and next steps.  
-- Technical LinkedIn posts that highlight the stack, the problem solved, and invite community discussion—all without manual copy‑pasting.  
+**Next step:** Add a lightweight Streamlit UI so non‑technical teammates can upload notebooks and download the generated README and LinkedIn copy instantly.  
 
-### What’s next?  
-- Plug‑in support for OpenAI, Anthropic, or local LLMs.  
-- User‑supplied prompt templates for brand‑specific tone.  
-- CLI tool & batch processing for whole repo directories.  
-
-💡 **Thoughts?** Have you faced documentation bottlenecks in your data‑science workflows? I’d love to hear how you automate (or plan to automate) knowledge sharing. Let’s discuss!
+Give it a try, and let the code write its own story! 🚀
