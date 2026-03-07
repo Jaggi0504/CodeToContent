@@ -1,28 +1,29 @@
-🚀 **Automating README & LinkedIn Post Generation with LLMs** 🚀  
+🚀 **Automated README & LinkedIn Post Generator for Jupyter Notebooks** 🚀  
 
-I’ve just wrapped a proof‑of‑concept that turns a Jupyter notebook into a polished GitHub README **and** a ready‑to‑publish LinkedIn announcement—entirely automatically.
+I’ve built an end‑to‑end pipeline that turns any `.ipynb` into a polished GitHub README **and** a ready‑to‑publish LinkedIn post with a single function call.
 
-### What it does
-1️⃣ **Extracts** markdown & code cells from any `.ipynb`.  
-2️⃣ **Feeds** the consolidated content into carefully crafted PromptTemplates.  
-3️⃣ **Invokes** Groq’s `gpt‑oss‑120b` via LangChain to produce a full‑featured README (overview, problem statement, tech stack, installation, usage, etc.).  
-4️⃣ **Generates** a concise, technically‑oriented LinkedIn post that highlights the same story.  
-5️⃣ **Orchestrates** the whole pipeline with LangGraph, guaranteeing the README is created before the social post.
+### What it does  
+1️⃣ **Extracts** markdown & code cells from a notebook (`load_notebook`).  
+2️⃣ **Prompts** Groq’s GPT‑OSS‑120B via LangChain to craft a structured README.  
+3️⃣ **Feeds** that README into a second prompt to generate a concise, technical LinkedIn summary.  
+4️⃣ **Orchestrates** the two steps with LangGraph’s state‑graph, then writes `README_generated.md` & `linkedin_post.txt`.
 
-### Tools & Frameworks
-- **Python 3.10+** – core language  
+### Core stack  
+- **Python 3.9+** – core logic  
 - **nbformat** – notebook parsing  
-- **LangChain** (`PromptTemplate`) & **LangGraph** (`StateGraph`) – prompt engineering & workflow orchestration  
-- **Groq** (`ChatGroq`, model `openai/gpt‑oss‑120b`) – LLM inference  
-- **dotenv** – secure API‑key handling  
-- **Mermaid** (via IPython) – visualizing the graph  
+- **LangChain + LangChain‑Groq** – prompt templating & LLM abstraction  
+- **LangGraph** – workflow graph (generate_readme → generate_linkedin_post)  
+- **Groq LLM (gpt‑oss‑120b)** – high‑throughput generation  
+- **Mermaid** (via `draw_mermaid_png`) – visual graph rendering  
 
-### Why it matters
-Documentation and community outreach are often after‑thoughts, leading to inconsistent READMEs and missed visibility. By automating both artifacts in seconds, we eliminate repetitive copy‑pasting, reduce human error, and free up developer time for actual code. The approach also demonstrates how LLMs can be embedded in CI pipelines to keep project metadata up‑to‑date with every notebook change.
+### Why it matters  
+Documentation and social‑media outreach are often after‑thoughts that drain developer time and become stale. By automating both artifacts, we get:  
+- Consistent, up‑to‑date READMEs that cover title, problem, approach, tech stack, results, and next steps.  
+- Technical LinkedIn posts that highlight the stack, the problem solved, and invite community discussion—all without manual copy‑pasting.  
 
-### Takeaways & Next Steps
-- **Batch processing** and **template customization** are on the roadmap, so teams can scale this across repositories.  
-- Adding **multi‑LLM support** and **LinkedIn API scheduling** would close the loop from code to community.  
-- The experiment reinforced that a well‑structured prompt + deterministic graph (LangGraph) yields reliable, reproducible outputs—key for production‑grade AI‑augmented tooling.
+### What’s next?  
+- Plug‑in support for OpenAI, Anthropic, or local LLMs.  
+- User‑supplied prompt templates for brand‑specific tone.  
+- CLI tool & batch processing for whole repo directories.  
 
-💡 **Discussion:** Have you tried LLM‑driven documentation in your workflow? What challenges or successes have you seen when coupling AI with CI/CD pipelines? Let’s exchange ideas!
+💡 **Thoughts?** Have you faced documentation bottlenecks in your data‑science workflows? I’d love to hear how you automate (or plan to automate) knowledge sharing. Let’s discuss!
