@@ -4,7 +4,7 @@ import tempfile
 
 import main
 
-st.title("README + LinkedIn Generator")
+st.title("README + LinkedIn Post Generator")
 
 st.write("Upload a Jupyter Notebook to generate a README.md and LinkedIn post.")
 
